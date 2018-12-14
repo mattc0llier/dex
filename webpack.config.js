@@ -11,21 +11,17 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules)/,
+        exclude: /(node-modules)/,
         loader: require.resolve('babel-loader')
       },
       {
         test: /\.scss$/,
         use: [
-          {
-            loader: "style-loader"
-          }, {
-            loader: "css-loader"
-          }, {
-            loader: "sass-loader"
-          }
+          { loader: 'style-loader' },
+          { loader: 'css-loader' },
+          { loader: 'sass-loader' }
         ]
       }
     ]
   }
-};
+}
