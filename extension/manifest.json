@@ -7,7 +7,8 @@
     "tabs",
     "bookmarks",
     "unlimitedStorage",
-    "activeTab"
+    "activeTab",
+    "http://localhost:1234/"
   ],
   "background": {
     "scripts": ["background.js"]
