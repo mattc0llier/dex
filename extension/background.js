@@ -33,6 +33,6 @@ chrome.tabs.onUpdated.addListener( function(tabId, changeInfo, tab) {
 
      request.open("POST", "http://localhost:8080/api/context", true);
      request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-     request.send(JSON.stringify({denny: 1, mark: 1, johnny: 0}));
+     request.send(JSON.stringify({tab}));
    }
  });

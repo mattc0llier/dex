@@ -1,7 +1,10 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const app = express();
+const Pusher = require('pusher');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,6 +26,16 @@ const storage = {
     }
 };
 
+
+
+const pusher = new Pusher({
+  appId: '675319',
+  key: '7183f00f7d1dd7d82761',
+  secret: process.env.PUSHER_SECRET,
+  cluster: 'eu',
+  encrypted: true
+});
+
 function getContext(){
     return storage.contexts;
 }
@@ -43,6 +56,9 @@ app.get('/context', function(req, res){
 app.post('/api/context', (req, res) => {
   res.json(req.body);
   console.log(req.body);
+  pusher.trigger('context', 'update-context', {
+    "message": req.body
+  });
 })
 
 app.listen(8080, function(){
