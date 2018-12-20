@@ -12,22 +12,24 @@ class App extends React.Component {
      this.handleContextUpdate = this.handleContextUpdate.bind(this)
   }
 
-  handleContextUpdate(){
-    this.setState({
-      currentTab: data.message
-    })
-  }
 
-  componentDidMount(handleContextUpdate) {
+
+  componentDidMount() {
     const pusher = new Pusher('7183f00f7d1dd7d82761', {
       cluster: 'eu'
     });
 
     var channel = pusher.subscribe('context');
-    channel.bind('update-context', function(data) {
+    channel.bind('update-context', (data) => {
       console.log("recieved update context event", data.message);
-      this.handleContextUpdate()
+      this.handleContextUpdate(data)
     });
+  }
+
+  handleContextUpdate(data){
+    this.setState({
+      currentTab: data.message
+    })
   }
 
 
@@ -39,7 +41,7 @@ class App extends React.Component {
       <div className="app">
         App goes here ioehfioehr
 
-        { this.state.currentTab }
+        <p>{JSON.stringify(this.state.currentTab)}</p>
       </div>
     )
   }
