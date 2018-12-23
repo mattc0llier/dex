@@ -16,5 +16,13 @@
   "browser_action": {
      "default_icon": "calendar-small.png",
      "default_title": "DEX"
+  },
+  "commands": {
+    "update-context": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y"
+      },
+      "description": "Send a 'context' event to the extension"
+    }
   }
 }

@@ -39,7 +39,7 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        App goes here ioehfioehr
+        Your current Tab:
 
         <p>{JSON.stringify(this.state.currentTab)}</p>
       </div>
