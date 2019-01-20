@@ -61,13 +61,13 @@ app.post('/api/context', (req, res) => {
   });
 })
 
-// app.post('/api/context/now', (req, res) => {
-//   res.json(req.body);
-//   console.log(req.body);
-//   pusher.trigger('context', 'context-now', {
-//     "message": req.body
-//   });
-// })
+app.post('/api/context/now', (req, res) => {
+  res.json(req.body);
+  console.log(req.body);
+  pusher.trigger('context', 'context-now', {
+    "message": req.body
+  });
+})
 
 app.listen(8080, function(){
   console.log('Listening on port 8080');

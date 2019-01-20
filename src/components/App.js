@@ -9,7 +9,8 @@ class App extends React.Component {
 
     this.state = { contextGlobal: [], currentTab: [], contextNow: [], content: [] }
 
-     this.handleContextUpdate = this.handleContextUpdate.bind(this)
+     this.handleGlobalContextUpdate = this.handleGlobalContextUpdate.bind(this)
+     this.handleContextNowUpdate = this.handleContextNowUpdate.bind(this)
   }
 
   componentDidMount() {
@@ -17,16 +18,30 @@ class App extends React.Component {
       cluster: 'eu'
     });
 
-    var channel = pusher.subscribe('globalContext');
-    channel.bind('update-context', (data) => {
-      console.log("recieved update context event", data.message);
-      this.handleContextUpdate(data)
+    const globalContext = pusher.subscribe('globalContext');
+    globalContext.bind('update-context', (data) => {
+      console.log("recieved globalContext event", data.message);
+      this.handleGlobalContextUpdate(data)
+    });
+
+    const context = pusher.subscribe('context');
+    context.bind('context-now', (data) => {
+      console.log("recieved contextNOW context event", data.message);
+      this.handleContextNowUpdate(data)
     });
   }
 
-  handleContextUpdate(data){
+  //updates the global context state
+  handleGlobalContextUpdate(data){
     this.setState({
       currentTab: data.message
+    })
+  }
+
+  //updates the contextNow State
+  handleContextNowUpdate(data){
+    this.setState({
+      contextNow: data.message
     })
   }
 
@@ -47,7 +62,7 @@ class App extends React.Component {
 
         <h3>Context now:</h3>
         // The context when A user initiates a save
-
+        <p>{JSON.stringify(this.state.contextNow)}</p>
 
         <h3>Content:</h3>
         // The content sent through and you would like to includein  your notes

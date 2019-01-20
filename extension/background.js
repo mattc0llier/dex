@@ -22,7 +22,7 @@ function buttonClicked(tab){
    const contextData = { url: tab.url, title: tab.title/*, image: image*/ }
    console.log(contextData);
 
-   fetch('http://localhost:8080/api/context', {
+   fetch('http://localhost:8080/api/context/now', {
       method: 'post',
       body: JSON.stringify(contextData),
       headers: {
