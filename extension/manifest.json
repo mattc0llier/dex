@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "DEX",
-  "description": "A simple application to track live cryptocurrency prices",
+  "name": "DEX - context",
+  "description": "Send browser context through to other apps.",
   "version": "1.0",
   "permissions": [
     "tabs",
